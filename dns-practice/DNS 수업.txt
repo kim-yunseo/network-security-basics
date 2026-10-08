@@ -1,0 +1,21 @@
+DNS 질문과 응답을 만들고 Wireshark에서 같은 패킷을 찾는 수업, Python 결과를 먼저 확인한 뒤 패킷을 관찰
+'dns_client.py'가 요청하고 'local_dns.py'가 응답한다.
+
+TCP는 상대와 연결을 먼저 맺고 빠진 데이터가 있으면 다시 보내는 등 전달을 관리한다.
+UDP는 연결없이 바로 보내고 자체적으로 보장하지 않는다.
+
+www.naver.com(도메인네임) => 223.130.195.200(ip 주소)
+classroom.test(도메인네임) => 127.0.0.1(ip 주소)
+
+실행
+1)local_dns.py(서버 대기)
+2)dns_client.py(요청)
+
+방향
+-클라이언트가 dns 서버에 질문: 임시포트 => 15301(프로그램)
+-dns 서버가 클라이언트에 답변: 15301(프로그램)=> 임시포트
+
+와이어샤크
+Source Port(보내는 쪽)와 Destination Port(패킷 받는 쪽)를 확인
+Source Port(보내는 쪽): 클라이언트의 임시포트
+Destination Port(패킷 받는 쪽): 15301 서버 쪽
